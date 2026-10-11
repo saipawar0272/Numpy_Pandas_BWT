@@ -1,0 +1,128 @@
+Core array internals
+1
+What is a NumPy ndarray, and how does it differ from a Python list in terms of memory layout and performance?
+
+2
+What are the key attributes of an ndarray — shape, ndim, dtype, size, itemsize, and strides? What does each tell you?
+
+3
+Explain the concept of strides in NumPy. How do strides enable operations like transpose and slicing to work without copying data?
+
+4
+What is the difference between a view and a copy in NumPy? How do you check whether an array owns its data?
+
+5
+What is C-order (row-major) vs F-order (column-major) memory layout? When does this choice affect real-world performance?
+
+6
+What does it mean for an array to be contiguous? How does contiguity affect vectorized operation speed, and how can you make a non-contiguous array contiguous?
+
+Data types and type system
+7
+What are the most common NumPy data types? How do you specify a dtype when creating an array, and why does it matter?
+
+8
+What is upcasting in NumPy? What dtype results when you add a float32 array with an int64 array?
+
+9
+What is a structured array in NumPy? How is it different from a regular ndarray, and when would you use one over a pandas DataFrame?
+
+10
+Why can't NumPy represent NaN in an integer array? What are the implications for data pipelines that receive nullable integer data?
+
+Indexing, slicing, and masking
+11
+What is the difference between basic slicing and advanced (fancy) indexing in NumPy? Which one returns a view and which returns a copy?
+
+12
+How does boolean indexing (masking) work? Write an example of filtering all values greater than a threshold from a 2D array.
+
+13
+What is fancy indexing? How does passing an array of indices differ from slicing in terms of memory and mutability?
+
+14
+What does np.where do? How is it different from boolean masking, and how can it be used as a vectorized if-else?
+
+15
+Explain the difference between np.nonzero, np.argwhere, and np.where with no condition. When would you use each?
+
+Broadcasting and vectorization
+16
+What is broadcasting in NumPy? Describe the rules NumPy uses to decide whether two arrays are broadcast-compatible.
+
+17
+Given arrays of shapes (5, 1) and (1, 4), what shape is the result of adding them? Walk through the broadcasting rules step by step.
+
+18
+What is vectorization? Why is a vectorized NumPy operation orders of magnitude faster than an equivalent Python for loop?
+
+19
+How does np.newaxis (or None) help with broadcasting? Give a real use case where inserting a new axis changes the behavior of an operation.
+
+20
+What is the difference between element-wise multiplication (*), the dot product (np.dot), and matrix multiplication (@)? When does each apply?
+
+Reshaping and dimension manipulation
+21
+What is the difference between reshape and resize in NumPy? Does reshape always return a view?
+
+22
+What do np.squeeze and np.expand_dims do? Give an example where squeezing a batch output is necessary before passing it to a downstream function.
+
+23
+What is the difference between np.transpose and np.swapaxes? Does transpose return a copy or a view?
+
+24
+What is the difference between np.vstack, np.hstack, and np.dstack? How does np.concatenate relate to them?
+
+25
+What does np.einsum do and why is it powerful? Give an example of a matrix operation expressed more clearly with einsum than with explicit dot products.
+
+Aggregation and math operations
+26
+How does the axis parameter work in aggregation functions like sum, mean, and max? What does axis=0 vs axis=1 mean for a 2D array?
+
+27
+What is the difference between np.sum and np.cumsum? Describe a scenario where cumulative sum is more useful than total sum.
+
+28
+What is the purpose of keepdims=True in aggregation functions? Why is it important when combining aggregated results back with the original array via broadcasting?
+
+29
+What are the NaN-safe equivalents of common aggregation functions? When should you prefer np.nanmean over np.mean?
+
+Sorting and searching
+30
+What is the difference between np.sort and np.argsort? In what situations is argsort more useful than sort?
+
+31
+What is np.lexsort and how does it differ from np.argsort? How would you use it to sort a dataset by secondary key when the primary key is tied?
+
+32
+What does np.searchsorted do? What assumption must the array satisfy, and what is its time complexity?
+
+NaN, infinity, and data quality
+33
+How do you detect NaN and inf values in a NumPy array? Why can't you use == np.nan to check for NaN?
+
+34
+What is the result of arithmetic operations involving NaN — e.g., NaN + 1, NaN > 5? What does "NaN poisoning" mean in practice?
+
+35
+How would you impute missing values in a 2D NumPy array (represented as NaN) with the column mean — using only NumPy, no pandas or sklearn?
+
+Performance and memory efficiency
+36
+What are in-place operations in NumPy (e.g., +=, np.add(a, b, out=a))? How do they reduce memory usage compared to creating new arrays?
+
+37
+What is the out parameter in NumPy ufuncs? Give an example of using it to avoid an intermediate array allocation in a computation chain.
+
+38
+What is a NumPy universal function (ufunc)? How do ufuncs achieve their speed, and how are they different from regular Python functions applied element-wise?
+
+39
+How does NumPy leverage BLAS/LAPACK under the hood for linear algebra operations? What are the practical implications for choosing between np.dot and a manual loop?
+
+40
+When would you move from NumPy to Dask, CuPy, or numexpr for numerical computation? What limitations of NumPy motivate each choice?
